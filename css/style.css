@@ -1,0 +1,340 @@
+/* --- font import --- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+/* --- basic Normalize --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- basic styles --- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #797979;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+
+/* ==================================================================== 
+STYLES - site header
+=======================================================================*/
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.light {
+    font-weight: 300;
+}
+
+.trademark {
+    font-size: 0.8em;
+    font-weight: 300;
+    vertical-align: top;
+}
+
+.notification-icon {
+    width: 20px;
+}
+
+.user-pic {
+    width: 49px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: #fff;
+}
+
+/* ==================================================================== 
+STYLES - site navigation
+=======================================================================*/
+
+.nav-icon {
+    width: 29px;
+}
+
+
+/* ==================================================================== 
+STYLES - site main content
+=======================================================================*/
+
+/* styles ------------------------------------------------- */
+/* dashboard header */
+
+.headline {
+    font-size: 1.3em;
+    font-weight: 400;
+    background-color: #fff;
+}
+
+.search-field {
+    width: 100%;
+    height: 39px;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-field::placeholder {
+    color: #b9b9b9;
+}
+
+/* styles ------------------------------------------------- */
+/* traffic charts */
+
+.traffic-header ul {
+    list-style-type: none;
+}
+
+.traffic-header li {
+    display: inline-block;
+}
+
+
+.traffic-link {
+    padding: 5px 20px;
+    border-radius: 25px;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #797979;
+    text-decoration: none;
+}
+
+
+/* styles ------------------------------------------------- */
+/* social media card */
+
+.social-media-card {
+    background-color: #fbfbfb;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+}
+
+.social-image {
+    background-color: #7377bf;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+}
+
+.bird-logo, 
+.g-logo {
+    fill: #fff;
+    transform-origin: 50% 60%;
+    transform: scale(0.50);
+}
+
+.f-logo {
+    fill: #fff;
+    transform-origin: 70% 60%;
+    transform: scale(0.70);
+}
+
+.social-title {
+    color: #7377bf;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.social-text {
+    font-size: 2.5em;
+}
+
+
+/* styles ------------------------------------------------- */
+/* new members / recent activity */
+
+.profile-pic {
+    width: 49px;
+    border-radius: 50%;
+}
+
+.member-name {
+    font-size: 1em;
+}
+
+p {
+    font-size: 0.9em;
+}
+
+.member-email {
+    font-size:  0.9em;
+    text-decoration: none;
+    color: #7075d1;
+}
+
+.arrow {
+    font-size: 3em;
+    color: #7377bf;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+/* styles  ------------------------------------------------- */
+/* message user / settings */
+
+.form-field,
+.form-area {
+    width: 100%;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    background-color: #fbfbfb;
+    padding: 10px;
+    font-size: 1em;
+    outline: none;
+}
+
+.form-field {
+    height: 39px;
+}
+
+.form-field::placeholder,
+.form-area::placeholder,
+select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    color: #b9b9b9;
+}
+
+.button-primary {
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #7377bf;
+    cursor: pointer;
+}
+
+.button-disable {
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #b9b9b9;
+    cursor: pointer;
+}
+
+
+/* ==================================================================== 
+LAYOUT
+=======================================================================*/
+
+.site-grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header"
+        "navigation"
+        "main";
+}
+
+header {
+    grid-area: header;
+    background-color: #7477bf;
+}
+
+nav {
+    grid-area: navigation;
+    background-color: #4d4c72;
+}
+
+main {
+    grid-area: main;
+    background-color: #b9b9b9;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "dashboard-header"
+        "traffic"
+        "daily-traffic"
+        "mobile-users"
+        "social-stats"
+        "new-members"
+        "recent-activity"
+        "message-user"
+        "settings"; 
+    gap: 1px;
+}
+
+
+section {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.dashboard-header {
+    grid-area: dashboard-header;
+}
+
+
+.search-container {
+    padding: 10px;
+    background-color: #fbfbfb;
+}
+
+
+
+
+.traffic {
+    grid-area: traffic;
+}
+
+.daily-traffic {
+    grid-area: daily-traffic;
+}
+
+.mobile-users {
+    grid-area: mobile-users;
+}
+
+.social-stats {
+    grid-area: social-stats;
+}
+
+.new-members {
+    grid-area: new-members;
+}
+
+.recent-activity {
+    grid-area: recent-activity;
+}
+
+.message-user {
+    grid-area: message-user;
+}
+
+.settings {
+    grid-area: settings;
+}
+
+
+
+
+/* canvas {
+    display: inline-block;
+    width: 100%;
+    margin: 20px;
+    background-color: thistle;
+    border: 1px solid orchid;
+} */
