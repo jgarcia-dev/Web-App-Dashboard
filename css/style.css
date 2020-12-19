@@ -384,7 +384,7 @@ h1 {
 }
 
 /* ----------------------------------------------------------- */
-/* message user/settings */
+/* message user/ form settings */
 .form-field {
     height: 42px;
 }
@@ -470,6 +470,96 @@ select option:disabled {
 
 .disable:hover {
     background-color: grey;
+}
+
+/* ----------------------------------------------------------- */
+/* settings - toggle switches */
+.toggle-options-container {
+    margin-bottom: 20px;
+}
+
+.option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.option-text {
+    font-size: 0.9rem;
+}
+
+.toggle {
+    display: inline-block;
+    position: relative;
+    /* font-reset - gap fix*/
+    font-size: 0;  
+}
+
+.toggle input {
+    appearance: none;
+}
+
+.toggle-bg {
+    display: inline-block;
+    height: 2rem;
+    width: 5rem;
+    background-color: #7377bf;
+    border: 2px solid #dadada;
+    border-radius: 2rem;
+}
+
+.toggle-dot {
+    display: inline-block;
+    height: 1.3rem;
+    width: 1.3rem;
+    background-color: #fff;
+    border: 2px solid #dadada;
+    border-radius: 50%;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+}
+
+.checked-text,
+.unchecked-text {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #fff;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    position: absolute;
+    top: 22%;
+}
+
+.unchecked-text {
+    right: 15%;
+}
+
+.checked-text {
+    left: 15%;
+    display: none;
+ }
+
+/* focus states ------------------------*/
+.toggle input:focus + .toggle-bg {
+    border-color: #7377bf;
+}
+
+/* checked states ----------------------*/
+.toggle input:checked ~ .toggle-dot {
+    left: auto;
+    right: 5%;
+}
+
+.toggle input:checked ~ .checked-text {
+    display: inline-block;
+}
+
+.toggle input:checked ~ .unchecked-text {
+    display: none;
 }
 
 
@@ -691,4 +781,10 @@ media queries
     .settings-btn-container .btn {
         width: 48%;
     } 
+
+    /* ----------------------------------------------------------- */
+    /* settings - toggle switches */
+    .toggle-options-container {
+        width: 60%
+    }
 }
