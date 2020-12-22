@@ -222,11 +222,20 @@ h1 {
     border-radius: 5px;
     margin: 20px 14px;
     background-color: #7377bf;
-}
-
-.alert-box p {
     font-size: 0.9em;
     color: #fff;
+}
+
+.close-btn {
+    float: right;
+    margin-left: 15px;
+    font-size: 1.5rem;
+    line-height: 0.9;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #4d4c72;
 }
 
 
