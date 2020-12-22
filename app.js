@@ -1,6 +1,7 @@
 const emailNotifications = document.getElementById('emailNotifications');
 const publicProfile = document.getElementById('publicProfile');
 const timezone = document.getElementById('timezone');
+const alertBox = document.getElementById('alert');
 
 function supportsLocalStorage() {
     try {
@@ -51,4 +52,8 @@ window.onload = function() {
             localStorage.timezone = JSON.stringify(timezone.selectedIndex);
         });
     }
+
+    alertBox.addEventListener('click', ()=> {
+        alertBox.style.display = 'none';
+    });
 }
