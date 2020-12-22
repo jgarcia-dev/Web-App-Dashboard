@@ -474,7 +474,7 @@ select option:disabled {
 
 /* ----------------------------------------------------------- */
 /* settings - toggle switches */
-.toggle-options-container {
+.toggle-settings-container {
     margin-bottom: 20px;
 }
 
@@ -784,7 +784,7 @@ media queries
 
     /* ----------------------------------------------------------- */
     /* settings - toggle switches */
-    .toggle-options-container {
+    .toggle-settings-container {
         width: 60%
     }
 }
