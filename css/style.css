@@ -38,17 +38,18 @@ styles
 /* ----------------------------------------------------------- */
 /* company header */
 .company-header {
-    height: 7rem;
     background-color: #7477bf;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     padding: 0 20px;
 }
 
 h1 {
     font-size: 1.7rem;
     color: #fff;
+    margin: 10px 0;
 }
 
 .trademark {
@@ -61,16 +62,93 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
 }
 
-.notification-icon {
+#notifications-btn {
+    display: block;
+    width: 39px;
+    height: 39px;
+    margin: 10px 0;
+    background-color: #7477bf;
+    outline: none;
+    border: none;
+    cursor: pointer;  
+    position: relative;
+}
+
+.marker {
+    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    pointer-events: none;
+}
+
+.notifications-icon {
     width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
 }
 
+#notifications-btn:hover .notifications-icon{
+    transform: rotate(45deg);
+}
+
+.notifications-dropdown {
+    display: none;
+    width: 190px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.notifications-content {
+    padding: 10px;
+    background-color: #5f63c7;
+    border-radius: 0 0 5px 5px;
+    position: absolute;
+}
+
+.notifications-content p {
+    color: #fff;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.notifications-content p::before {
+    content: "\203A";
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.tri {
+    display: inherit;
+    width: 0px;
+    height: 0px;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #5f63c7;
+    border-left: 10px solid transparent;
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+}
+
+.show {
+    display: block;
+}
+
+/* divider */
 .v-bar {
     border-left: 1px solid #5f63c7;
-    height: 45px;
-    margin-left: 10px;
+    height: 39px;
+    margin-left: 5px;
 }
 
 .user-pic {
@@ -645,11 +723,8 @@ media queries
 
     /* ----------------------------------------------------------- */
     /* company header */
-    .company-header {
-        height: 5rem;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+    #notifications-btn {
+        margin: 20px 0;
     }
 
     /* ----------------------------------------------------------- */
@@ -681,6 +756,14 @@ media queries
             "social-stats social-stats"
             "new-members recent-activity"
             "message-user settings";
+    }
+
+    /* ----------------------------------------------------------- */
+    /* company header */
+    .company-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     /* ----------------------------------------------------------- */
