@@ -1,7 +1,45 @@
+// for notifications
+const notificationsDropDown = document.querySelector('.notifications-dropdown');
+const notificationsContent = document.querySelector('.notifications-content');
+const notificationsBtn = document.getElementById('notifications-btn');
+const marker = document.querySelector('.marker');
+const userNotifications = [
+    "You have a new message from Sonia Lupe.",
+    "Mike Smith liked your post.",
+    "You have a new message from Mark Sanchez"
+];
+
+// for local storage settings
 const emailNotifications = document.getElementById('emailNotifications');
 const publicProfile = document.getElementById('publicProfile');
 const timezone = document.getElementById('timezone');
 const alertBox = document.getElementById('alert');
+
+
+
+function showNotifications() {
+    notificationsDropDown.classList.add('show');
+    if (userNotifications.length > 0) {
+        while (userNotifications.length > 0) {
+            // Populate notifications content
+            const p = document.createElement('p');
+            p.textContent = userNotifications.pop();
+            notificationsContent.appendChild(p);
+        } 
+        // Deactivate notifications marker
+        marker.classList.remove('show');
+    } else {
+        // Display message of no notifications
+        const p = document.createElement('p');
+        p.textContent = "No notifications"
+        notificationsContent.appendChild(p);
+    }
+}
+
+function hideNotifications() {
+    notificationsDropDown.classList.remove('show');
+    notificationsContent.innerHTML = '';
+}
 
 function supportsLocalStorage() {
     try {
@@ -33,6 +71,7 @@ function updateUI() {
 }
 
 
+
 window.onload = function() {
     if (supportsLocalStorage()) {
 
@@ -56,4 +95,27 @@ window.onload = function() {
     alertBox.addEventListener('click', ()=> {
         alertBox.style.display = 'none';
     });
+
+    // show notifications marker
+    if (userNotifications.length > 0) {
+        marker.classList.add('show');
+    }
 }
+
+
+
+window.addEventListener('click', (e)=> {
+    // toggles display of notifications based on origin of click event
+    if (e.target === notificationsBtn) {
+        if (notificationsDropDown.classList.contains('show')) {
+            hideNotifications();
+        } else {
+            showNotifications();
+        }
+    } else {
+        hideNotifications();
+    }
+});
+
+
+
