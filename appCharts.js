@@ -1,3 +1,17 @@
+// datasets
+const hourlyLabels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
+const hourlyData = [1, 2, 1, 2, 4, 2, 3, 5, 3, 4, 6, 7, 6, 8, 5, 9, 6, 4, 2, 3, 3, 1, 2, 1];
+
+const dailyLabels = ["S", "M", "T", "W", "T", "F", "S"];
+const dailyData = [75, 100, 175, 125, 225, 200, 100];
+
+const weeklyLabels = ["16-22","23-29", "30-5", "6-12", "13-19", "20-26", "27-3", "4-10", "11-17", "18-24", "25-31"];
+const weeklyData = [750, 1200, 1500, 1250, 1500, 1700, 1250, 1750, 2200, 1750, 2200];
+
+const monthlyLabels = ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const monthlyData = [3000, 2500, 5500, 6000, 4500, 5000, 4500, 6000, 6500, 7250, 5000, 7000];
+
+
 // All charts global settings
 Chart.defaults.global.defaultFontColor = '#aaa';
 Chart.defaults.global.defaultFontFamily = "'Open Sans', sans-serif";
@@ -22,31 +36,28 @@ const trafficChartCtx = document.getElementById('traffic-chart').getContext('2d'
 const trafficChart = new Chart(trafficChartCtx, {
     type: 'line',
     data: {
-        labels: ["16-22", "23-29", "30-5", "6-12", "13-19", "20-26", "27-3", "4-10", "11-17", "18-24", "25-31"],
+        labels: weeklyLabels,
         datasets: [{
-            fill: 'start',
-            data: [750, 1250, 1000, 1500, 2000, 1500, 1575, 1250, 1750, 2250, 1750, 2250],
+            data: weeklyData
         }]
     },
     options: {
         scales: {
             xAxes: [{
                 gridLines: {
-                    offsetGridLines: true,
-                    drawTicks: false,
+                    drawTicks: false
                 },
                 ticks: {
-                    padding: 15,
+                    padding: 15
                 }
             }],
             yAxes: [{
-                offset: true,
                 gridLines: {
-                    offsetGridLines: true,
-                    drawTicks: 0,
+                    drawTicks: 0
                 },
                 ticks: {
-                    stepSize: 500,
+                    beginAtZero: true,
+                    stepSize: 500
                 }
             }]
         },
@@ -57,44 +68,38 @@ const trafficChart = new Chart(trafficChartCtx, {
 });
 
 
+// Bar chart global settings
+Chart.defaults.global.elements.rectangle.backgroundColor = 'rgba(115, 119, 191, 1)';
+
 // daily traffic chart
 const dailyChartCtx = document.getElementById('daily-chart').getContext('2d');
 const dailyChart = new Chart(dailyChartCtx, {
     type: 'bar',
     data: {
-        labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+        labels: dailyLabels,
         datasets: [{
-            barPercentage: 0.5,
-            data: [75, 100, 175, 125, 225, 200, 100],
-            backgroundColor: [
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-            ],
+            data: dailyData,
+            barPercentage: 0.5
         }]
     },
     options: {
         scales: {
             xAxes: [{
                 gridLines: {
-                    drawTicks: false,
+                    drawTicks: false
                 },
                 ticks: {
-                    padding: 15,
+                    padding: 15
                 }
             }],
             yAxes: [{
                 offset: true,
                 gridLines: {
                     offsetGridLines: true,
-                    drawTicks: false,
+                    drawTicks: false
                 },
                 ticks: {
-                    stepSize: 50,
+                    stepSize: 50
                 }
             }]
         },
@@ -124,7 +129,7 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
     options: {
         layout: {
             padding: {
-                right: 40,
+                right: 40
             },
         },
         legend: {
@@ -132,7 +137,7 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
             labels: {
                 boxWidth: 20,
                 padding: 20,
-                fontSize: 15,
+                fontSize: 15
             },
         }
     }
