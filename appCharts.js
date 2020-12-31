@@ -37,7 +37,7 @@ const trafficChart = new Chart(trafficChartCtx, {
                 },
                 ticks: {
                     padding: 15,
-                },
+                }
             }],
             yAxes: [{
                 offset: true,
@@ -48,7 +48,7 @@ const trafficChart = new Chart(trafficChartCtx, {
                 ticks: {
                     stepSize: 500,
                 }
-            }],
+            }]
         },
         legend: {
             display: false
@@ -85,7 +85,7 @@ const dailyChart = new Chart(dailyChartCtx, {
                 },
                 ticks: {
                     padding: 15,
-                },
+                }
             }],
             yAxes: [{
                 offset: true,
@@ -100,7 +100,7 @@ const dailyChart = new Chart(dailyChartCtx, {
         },
         legend: {
             display: false
-        },
+        }
     }
 });
 
@@ -135,5 +135,5 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
                 fontSize: 15,
             },
         }
-    },
+    }
 });
