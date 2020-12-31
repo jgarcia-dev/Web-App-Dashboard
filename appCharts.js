@@ -1,3 +1,22 @@
+// All charts global settings
+Chart.defaults.global.defaultFontColor = '#aaa';
+Chart.defaults.global.defaultFontFamily = "'Open Sans', sans-serif";
+Chart.defaults.global.defaultFontSize = 13;
+Chart.defaults.global.layout.padding.top = 20;
+Chart.defaults.scale.ticks.padding = 15;
+
+// Line chart global settings
+Chart.defaults.global.elements.line.borderWidth = 1;
+Chart.defaults.global.elements.line.borderColor = '#a0a3e3';
+Chart.defaults.global.elements.line.backgroundColor = 'rgba(115, 119, 191, 0.25)';
+Chart.defaults.global.elements.line.fill = 'start';
+Chart.defaults.global.elements.line.tension = 0;
+
+Chart.defaults.global.elements.point.radius = 6;
+Chart.defaults.global.elements.point.borderWidth = 2;
+Chart.defaults.global.elements.point.borderColor = '#8083c4';
+Chart.defaults.global.elements.point.backgroundColor = '#fff';
+
 // traffic chart
 const trafficChartCtx = document.getElementById('traffic-chart').getContext('2d');
 const trafficChart = new Chart(trafficChartCtx, {
@@ -5,45 +24,8 @@ const trafficChart = new Chart(trafficChartCtx, {
     data: {
         labels: ["16-22", "23-29", "30-5", "6-12", "13-19", "20-26", "27-3", "4-10", "11-17", "18-24", "25-31"],
         datasets: [{
+            fill: 'start',
             data: [750, 1250, 1000, 1500, 2000, 1500, 1575, 1250, 1750, 2250, 1750, 2250],
-            backgroundColor: [
-                'rgba(115, 119, 191, 0.3)'
-            ],
-            borderColor: [
-                'rgba(115, 119, 191, 0.7)'
-            ],
-            borderWidth: 1,
-            pointBorderColor: [
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)',
-                'rgba(115, 119, 191, 1)'
-            ],
-            pointBackgroundColor: [
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)',
-                'rgb(255, 255, 255, 1)'
-            ],
-            pointBorderWidth: 2,
-            lineTension: 0,
-            radius: 6,
         }]
     },
     options: {
@@ -58,12 +40,13 @@ const trafficChart = new Chart(trafficChartCtx, {
                 },
             }],
             yAxes: [{
+                offset: true,
                 gridLines: {
+                    offsetGridLines: true,
                     drawTicks: 0,
                 },
                 ticks: {
                     stepSize: 500,
-                    padding: 15,
                 }
             }],
         },
@@ -111,7 +94,6 @@ const dailyChart = new Chart(dailyChartCtx, {
                     drawTicks: false,
                 },
                 ticks: {
-                    padding: 15,
                     stepSize: 50,
                 }
             }]
@@ -140,11 +122,17 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
         }]
     },
     options: {
+        layout: {
+            padding: {
+                right: 40,
+            },
+        },
         legend: {
             position: 'right',
             labels: {
-                boxWidth: 25,
+                boxWidth: 20,
                 padding: 20,
+                fontSize: 15,
             },
         }
     },
