@@ -1,3 +1,5 @@
+// Charts setup =============================================================
+
 // datasets
 const hourlyLabels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
 const hourlyData = [1, 2, 1, 2, 4, 2, 3, 5, 3, 4, 6, 7, 6, 8, 5, 9, 6, 4, 2, 3, 3, 1, 2, 1];
@@ -57,7 +59,12 @@ const trafficChart = new Chart(trafficChartCtx, {
                 },
                 ticks: {
                     beginAtZero: true,
-                    stepSize: 500
+                    stepSize: 500,
+                    callback: function(value, index) {
+                        if (value !== 0) {
+                            return value;
+                        }
+                    }
                 }
             }]
         },
@@ -140,5 +147,53 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
                 fontSize: 15
             },
         }
+    }
+});
+
+
+
+// Chart Navigation Functionality =============================================================
+
+const trafficNav = document.querySelector('.traffic-nav');
+
+function setChart(chart, labelsArr, dataArr, ticksStepSize) {
+    chart.options.animation.duration = 0;
+    chart.data.labels = labelsArr;
+    chart.data.datasets[0].data = dataArr;
+    chart.options.scales.yAxes[0].ticks.stepSize = ticksStepSize;
+    chart.update();
+}
+
+function updateTrafficNavStyle(element) {
+    const trafficNavLis = document.getElementsByClassName('traffic-btn');
+
+    // Clear selected class from all nav buttons
+    for (let i = 0; i < trafficNavLis.length; i++) {
+        trafficNavLis[i].classList.remove('selected');
+    }
+
+    element.classList.add('selected');
+}
+
+
+trafficNav.addEventListener('click', (e)=> {
+    if (e.target.nodeName === 'LI') {
+        const btn = e.target;
+        const btnText = btn.textContent;
+
+        updateTrafficNavStyle(btn);
+    
+        if (btnText === "Hourly") {
+            setChart(trafficChart, hourlyLabels, hourlyData, 2);
+        }
+        if (btnText === "Daily") {
+            setChart(trafficChart, dailyLabels, dailyData, 50);
+        }
+        if (btnText === "Weekly") {
+            setChart(trafficChart, weeklyLabels, weeklyData, 500);
+        }
+        if (btnText === "Monthly") {
+            setChart(trafficChart, monthlyLabels, monthlyData, 1000);
+        }        
     }
 });
