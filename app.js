@@ -119,3 +119,22 @@ window.addEventListener('click', (e)=> {
 
 
 
+// for message widget
+const user = document.getElementById('userField');
+const message = document.getElementById('messageField');
+const send = document.getElementById('send');
+
+send.addEventListener('click', ()=> {
+    const userValue = user.value.trim();
+    const messageValue = message.value.trim();
+
+    if (userValue === '' && messageValue === '') {
+        alert('Please fill out both user and message fields before sending.');
+    } else if (userValue === '') {
+        alert('Please fill out user field before sending.');
+    } else if (messageValue === '') {
+        alert('Please fill out message field before sending.');
+    } else {
+        alert(`Message successfully sent to: ${userValue}`);
+    }
+});
