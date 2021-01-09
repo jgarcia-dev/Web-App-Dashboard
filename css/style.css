@@ -62,7 +62,6 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    position: relative;
 }
 
 #notifications-btn {
@@ -77,18 +76,6 @@ h1 {
     position: relative;
 }
 
-.marker {
-    display: none;
-    width: 10px;
-    height: 10px;
-    background-color: greenyellow;
-    border-radius: 50%;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    pointer-events: none;
-}
-
 .notifications-icon {
     width: 20px;
     height: 20px;
@@ -100,28 +87,43 @@ h1 {
     transform: rotate(45deg);
 }
 
-.notifications-dropdown {
+.notifications-marker {
     display: none;
-    width: 190px;
+    width: 10px;
+    height: 10px;
+    background-color: greenyellow;
+    border-radius: 50%;
     position: absolute;
-    bottom: 0px;
-    z-index: 1;
+    top: 0px;
+    right: 0px;
+    pointer-events: none;
 }
 
-.notifications-content {
+.show {
+    display: block;
+}
+
+.notifications-container {
+    position: relative;
+}
+
+.notifications-list {
+    width: 200px;
     padding: 10px;
     background-color: #5f63c7;
     border-radius: 0 0 5px 5px;
     position: absolute;
+    left: -20px;
+    z-index: 7;
 }
 
-.notifications-content p {
+.notification {
+    margin-bottom: 13px;
+    font-size: 0.85rem;
     color: #fff;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
 }
 
-.notifications-content p::before {
+.notification::before {
     content: "\203A";
     font-size: 1.2rem;
     font-weight: 700;
@@ -129,19 +131,14 @@ h1 {
 }
 
 .tri {
-    display: inherit;
     width: 0px;
     height: 0px;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #5f63c7;
-    border-left: 10px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #5f63c7;
+    border-left: 15px solid transparent;
     position: absolute;
-    bottom: 0px;
-    left: 8px;
-}
-
-.show {
-    display: block;
+    top: -15px;
+    left: 23px;
 }
 
 /* divider */
