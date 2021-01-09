@@ -1,45 +1,97 @@
-// for notifications
-const notificationsDropDown = document.querySelector('.notifications-dropdown');
-const notificationsContent = document.querySelector('.notifications-content');
-const notificationsBtn = document.getElementById('notifications-btn');
-const marker = document.querySelector('.marker');
+// USER NOTIFICATIONS
+// ==========================================================================================================
+const ntfBtn = document.getElementById('notifications-btn');
+const ntfMarker = document.querySelector('.notifications-marker');
 const userNotifications = [
     "You have a new message from Sonia Lupe.",
     "Mike Smith liked your post.",
     "You have a new message from Mark Sanchez"
 ];
 
-// for local storage settings
-const emailNotifications = document.getElementById('emailNotifications');
-const publicProfile = document.getElementById('publicProfile');
-const timezone = document.getElementById('timezone');
-const alertBox = document.getElementById('alert');
+function buildElement(elementName, property, value, cssClass) {
+    const element = document.createElement(elementName);
+    element[property] = value;
+    element.classList.add(cssClass);
+    return element;
+}
 
+function getNotifications(arr) {
+    const notifications = [];
+    while(arr.length > 0) {
+        notifications.push(arr.pop());
+    }
+    return notifications;
+}
 
-
-function showNotifications() {
-    notificationsDropDown.classList.add('show');
-    if (userNotifications.length > 0) {
-        while (userNotifications.length > 0) {
-            // Populate notifications content
-            const p = document.createElement('p');
-            p.textContent = userNotifications.pop();
-            notificationsContent.appendChild(p);
-        } 
-        // Deactivate notifications marker
-        marker.classList.remove('show');
+function createNotificationsList(arr) {
+    const div = document.createElement('DIV');
+    div.classList.add('notifications-list');
+    const tri = document.createElement('DIV');
+    tri.classList.add('tri');
+    div.appendChild(tri);
+    if (arr.length > 0) {
+        // notifications exist, build list of notifications
+        for (let i = 0; i < arr.length; i++) {
+            div.appendChild(buildElement('P', 'textContent', arr[i], 'notification'));
+        }
     } else {
-        // Display message of no notifications
-        const p = document.createElement('p');
-        p.textContent = "No notifications"
-        notificationsContent.appendChild(p);
+        // no notifications
+        div.appendChild(buildElement('P', 'textContent', 'No Notifications', 'notification'));
+    }
+    return div;
+}
+
+function closeNotificationsList() {
+    const ntfList = document.querySelector('.notifications-list');
+    if(ntfList) {
+        ntfList.parentElement.removeChild(ntfList);
     }
 }
 
-function hideNotifications() {
-    notificationsDropDown.classList.remove('show');
-    notificationsContent.innerHTML = '';
+function setNotificationsMarker() {
+    if (userNotifications.length > 0) {
+        ntfMarker.classList.add('show');
+    } else {
+        ntfMarker.classList.remove('show');
+    }
 }
+
+
+ntfBtn.addEventListener('click', ()=> {
+    const ntfDiv = document.querySelector('.notifications-container');
+    const ntfList = document.querySelector('.notifications-list');
+
+    if(!ntfList) {
+        const currNotifications = getNotifications(userNotifications);
+        ntfDiv.appendChild(createNotificationsList(currNotifications));
+        setNotificationsMarker();
+    } else {
+        closeNotificationsList();
+    }
+});
+
+window.addEventListener('click', (e)=> {
+    if (e.target.id !== 'notifications-btn') {
+        closeNotificationsList();
+    }
+});
+
+
+
+// ALERT BOX
+// ==========================================================================================================
+const alertBox = document.getElementById('alert');
+
+alertBox.addEventListener('click', ()=> {
+    alertBox.style.display = 'none';
+});
+
+
+// SETTINGS - local storage
+// ==========================================================================================================
+const emailNotifications = document.getElementById('emailNotifications');
+const publicProfile = document.getElementById('publicProfile');
+const timezone = document.getElementById('timezone');
 
 function supportsLocalStorage() {
     try {
@@ -56,77 +108,46 @@ function updateUI() {
     const timezoneValue = JSON.parse(localStorage.getItem(timezone.id));
 
     // if local storage setting values exist then set UI setting to value
-    
     if (emailNotificationsValue !== null) {
         emailNotifications.checked = emailNotificationsValue;
     }
-
     if (publicProfileValue !== null) {
         publicProfile.checked = publicProfileValue;
     }
-
     if (timezoneValue !== null) {
         timezone.selectedIndex = timezoneValue;
     }
 }
 
-
-
 window.onload = function() {
+    // for user notifications marker
+    setNotificationsMarker();
+
     if (supportsLocalStorage()) {
 
         updateUI();
 
         // event handlers to setting values to local storage
-
         emailNotifications.addEventListener('change', ()=> {
             localStorage.emailNotifications = JSON.stringify(emailNotifications.checked);
         });
-
         publicProfile.addEventListener('change', ()=> {
             localStorage.publicProfile = JSON.stringify(publicProfile.checked);
         });
-        
         timezone.addEventListener('change', ()=> {
             localStorage.timezone = JSON.stringify(timezone.selectedIndex);
         });
-    }
-
-    alertBox.addEventListener('click', ()=> {
-        alertBox.style.display = 'none';
-    });
-
-    // show notifications marker
-    if (userNotifications.length > 0) {
-        marker.classList.add('show');
     }
 }
 
 
 
-window.addEventListener('click', (e)=> {
-    // toggles display of notifications based on origin of click event
-    if (e.target === notificationsBtn) {
-        if (notificationsDropDown.classList.contains('show')) {
-            hideNotifications();
-        } else {
-            showNotifications();
-        }
-    } else {
-        hideNotifications();
-    }
-
-    closeAutoCompList();
-});
-
-
-
-// for message widget
+// MESSAGE FORM
+// ==========================================================================================================
 const userField = document.getElementById('userField');
 const message = document.getElementById('messageField');
 const send = document.getElementById('send');
 const autoCompContainer = document.querySelector('.autocomplete-container');
-
 users = ['Annie Chen', 'Abe Smith', 'Carla Willet', 'Dale Byrd', 'Dale Brad', 'Dan Oliver', 'John Garcia', 'Juan Garcia', 'Mike Smith', 'Victoria Chambers']
 let currFocus = -1;
 
@@ -137,7 +158,6 @@ function getSearches(arr, queryStr) {
             searches.push(arr[i]);
         }
     }
-
     return searches;
 }
 
@@ -219,4 +239,8 @@ send.addEventListener('click', ()=> {
     } else {
         alert(`Message successfully sent to: ${userValue}`);
     }
+});
+
+window.addEventListener('click', ()=> {
+    closeAutoCompList();
 });
