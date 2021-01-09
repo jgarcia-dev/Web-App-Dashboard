@@ -205,7 +205,9 @@ userField.addEventListener('input', ()=> {
             }
             autoCompContainer.appendChild(autoCompList);
         }
-    }  
+    } else {
+        closeAutoCompList();
+    } 
 });
 
 userField.addEventListener('keydown', (e)=> {
