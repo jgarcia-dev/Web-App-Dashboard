@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+/* --- Fix for traffic-chart not resizing when window shrunk --- */
+canvas {
+    width: 100% !important;
+}
+
 /* ----------------------------------------------------------- */
 /* general text styles */
 body {
