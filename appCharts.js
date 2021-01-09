@@ -143,7 +143,7 @@ const mobileUsersChart = new Chart(mobileUsersChartCtx, {
             position: 'right',
             labels: {
                 boxWidth: 20,
-                padding: 20,
+                padding: 15,
                 fontSize: 15
             },
         }
