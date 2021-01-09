@@ -144,6 +144,7 @@ window.onload = function() {
 
 // MESSAGE FORM
 // ==========================================================================================================
+const userForm = document.querySelector('form');
 const userField = document.getElementById('userField');
 const message = document.getElementById('messageField');
 const send = document.getElementById('send');
@@ -228,18 +229,23 @@ userField.addEventListener('keydown', (e)=> {
     }
 });
 
-send.addEventListener('click', ()=> {
+userForm.addEventListener('submit', (e)=> {
     const userValue = userField.value.trim();
     const messageValue = message.value.trim();
 
-    if (userValue === '' && messageValue === '') {
-        alert('Please fill out both user and message fields before sending.');
-    } else if (userValue === '') {
-        alert('Please fill out user field before sending.');
-    } else if (messageValue === '') {
-        alert('Please fill out message field before sending.');
-    } else {
-        alert(`Message successfully sent to: ${userValue}`);
+    if (e.target.id = send) {
+        if (userValue === '' && messageValue === '') {
+            e.preventDefault();
+            alert('Please fill out both user and message fields before sending.');
+        } else if (userValue === '') {
+            e.preventDefault();
+            alert('Please fill out user field before sending.');
+        } else if (messageValue === '') {
+            e.preventDefault();
+            alert('Please fill out message field before sending.');
+        } else {
+            alert(`Message successfully sent to: ${userValue}`);
+        }
     }
 });
 
